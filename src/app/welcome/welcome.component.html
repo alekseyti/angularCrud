@@ -1,0 +1,71 @@
+
+
+<div class="container">
+  <a [routerLink]="['/login']" class="btn btn-primary" role="button" data-bs-toggle="button">Выйти</a>
+    <form #myForm="ngForm">
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Номер</label>
+        <input type="text" class="form-control"  name="name" aria-describedby="emailHelp" [(ngModel)]="userObj.name" >
+      </div>
+  
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Дата</label>
+        <input type="text" class="form-control"  name="mobile" aria-describedby="emailHelp"
+        [(ngModel)]="userObj.mobile">
+      </div>
+  
+  
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Название</label>
+        <input type="text" class="form-control"  name="email" aria-describedby="emailHelp"
+        [(ngModel)]="userObj.email">
+      </div>
+  
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Ответственный</label>
+        <input type="text" class="form-control" name="password" [(ngModel)]="userObj.password">
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Состояние</label>
+        <input type="text" class="form-control" name="state" [(ngModel)]="userObj.state">
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Примечание</label>
+        <input type="text" class="form-control" name="note" [(ngModel)]="userObj.note">
+      </div>
+  
+      <button type="button" class="btn btn-primary" (click)="addUser(myForm.value)" *ngIf="!isEdit">Submit</button>
+      <button type="button" class="btn btn-info"  *ngIf="isEdit" (click)="updateUser()">Update</button>
+    </form>
+    <br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Номер</th>
+          <th scope="col">Дата</th>
+          <th scope="col">Название</th>
+          <th scope="col">Ответственный</th>
+          <th scope="col">Состояние</th>
+          <th scope="col">Примечание</th>
+          <th scope="col">Изменить</th>
+          <th scope="col">Удалить</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of allUser">
+          <td>{{user.name}}</td>
+          <td>{{user.mobile}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.password}}</td>
+          <td>{{user.state}}</td>
+          <td>{{user.note}}</td>
+
+          <td><button (click)="editUser(user)" class="btn btn-warning">Edit</button></td>
+          <td><button (click)="deleteUser(user)" class="btn btn-danger">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
